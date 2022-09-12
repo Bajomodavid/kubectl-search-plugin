@@ -1,4 +1,4 @@
-module github.com/replicatedhq/krew-plugin-template
+module github.com/BajomoDavid/kubectl-search-plugin
 
 go 1.16
 
