@@ -2,7 +2,7 @@ project_name: search
 release:
   github:
     owner: BajomoDavid
-    name: kubectl-search-plugin
+    name: kubectl-search-search
 builds:
   - id: search
     goos:
@@ -15,9 +15,9 @@ builds:
     env:
       - CGO_ENABLED=0
       - GO111MODULE=on
-    main: cmd/plugin/main.go
+    main: cmd/search/main.go
     ldflags: -s -w
-      -X github.com/BajomoDavid/kubectl-search-plugin/pkg/version.version=
+      -X github.com/BajomoDavid/kubectl-search-search/pkg/version.version=
 archives:
   - id: search
     builds:

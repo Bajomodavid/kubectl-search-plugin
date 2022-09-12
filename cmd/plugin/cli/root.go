@@ -3,16 +3,13 @@ package cli
 import (
 	"errors"
 	"fmt"
-	"os"
-	"strings"
-	"time"
-
 	"github.com/BajomoDavid/kubectl-search-plugin/pkg/logger"
-	"github.com/BajomoDavid/kubectl-search-plugin/pkg/plugin"
+	"github.com/BajomoDavid/kubectl-search-plugin/pkg/search"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/tj/go-spin"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
+	"os"
+	"strings"
 )
 
 var (
@@ -21,7 +18,7 @@ var (
 
 func RootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:           "search",
+		Use:           "search [...text]",
 		Short:         "",
 		Long:          `.`,
 		SilenceErrors: true,
@@ -32,33 +29,12 @@ func RootCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			log := logger.NewLogger()
 			log.Info("")
-
-			s := spin.New()
-			finishedCh := make(chan bool, 1)
-			namespaceName := make(chan string, 1)
-			go func() {
-				lastNamespaceName := ""
-				for {
-					select {
-					case <-finishedCh:
-						fmt.Printf("\r")
-						return
-					case n := <-namespaceName:
-						lastNamespaceName = n
-					case <-time.After(time.Millisecond * 100):
-						if lastNamespaceName == "" {
-							fmt.Printf("\r  \033[36mSearching for namespaces\033[m %s", s.Next())
-						} else {
-							fmt.Printf("\r  \033[36mSearching for namespaces\033[m %s (%s)", s.Next(), lastNamespaceName)
-						}
-					}
-				}
-			}()
-			defer func() {
-				finishedCh <- true
-			}()
-
-			if err := plugin.RunPlugin(KubernetesConfigFlags, namespaceName); err != nil {
+			if len(args) < 1 {
+				println("Please supply a search text, e.g kubectl search <text>")
+				return nil
+			}
+			text := args[0]
+			if err := search.RunPlugin(KubernetesConfigFlags, text); err != nil {
 				return errors.Unwrap(err)
 			}
 

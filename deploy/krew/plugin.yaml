@@ -9,7 +9,7 @@ spec:
       matchLabels:
         os: linux
         arch: amd64
-    uri: https://github.com/BajomoDavid/kubectl-search-plugin/releases/download/v0.1.0/search_linux_amd64.tar.gz
+    uri: https://github.com/BajomoDavid/kubectl-search-search/releases/download/v0.1.0/search_linux_amd64.tar.gz
     sha256: ""
     files:
     - from: "./search"
@@ -21,7 +21,7 @@ spec:
       matchLabels:
         os: darwin
         arch: amd64
-    uri: https://github.com/BajomoDavid/kubectl-search-plugin/releases/download/v0.1.0/search_darwin_amd64.tar.gz
+    uri: https://github.com/BajomoDavid/kubectl-search-search/releases/download/v0.1.0/search_darwin_amd64.tar.gz
     sha256: ""
     files:
     - from: "./search"
@@ -33,7 +33,7 @@ spec:
       matchLabels:
         os: windows
         arch: amd64
-    uri: https://github.com/BajomoDavid/kubectl-search-plugin/releases/download/v0.1.0/search_windows_amd64.zip
+    uri: https://github.com/BajomoDavid/kubectl-search-search/releases/download/v0.1.0/search_windows_amd64.zip
     sha256: ""
     files:
     - from: "/search.exe"
@@ -41,8 +41,8 @@ spec:
     - from: LICENSE
       to: "."
     bin: "search.exe"
-  shortDescription: A new plugin
-  homepage: https://github.com/BajomoDavid/kubectl-search-plugin
+  shortDescription: A new search
+  homepage: https://github.com/BajomoDavid/kubectl-search-search
   caveats: |
     Usage:
       $ kubectl search
