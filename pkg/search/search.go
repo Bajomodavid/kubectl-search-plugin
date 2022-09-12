@@ -11,7 +11,7 @@ import (
 	v12 "k8s.io/client-go/kubernetes/typed/apps/v1"
 	v1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"strings"
-	//"k8s.io/client-go/plugin/pkg/client/auth/gcp"
+	//"k8s.io/client-go/search/pkg/client/auth/gcp"
 )
 
 type Result struct {

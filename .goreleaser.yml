@@ -2,7 +2,7 @@ project_name: search
 release:
   github:
     owner: BajomoDavid
-    name: kubectl-search-search
+    name: kubectl-search
 builds:
   - id: search
     goos:
@@ -17,7 +17,7 @@ builds:
       - GO111MODULE=on
     main: cmd/search/main.go
     ldflags: -s -w
-      -X github.com/BajomoDavid/kubectl-search-search/pkg/version.version=
+      -X github.com/BajomoDavid/kubectl-search/pkg/version.version=
 archives:
   - id: search
     builds:
